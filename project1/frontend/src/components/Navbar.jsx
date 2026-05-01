@@ -1,8 +1,6 @@
-import { useState, useEffect, useContext } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import { useState } from 'react'
 
 const Navbar = () => {
-  const { isAuthenticated, isAdmin, login, logout } = useContext(AuthContext)
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const navLinks = [
@@ -26,43 +24,15 @@ const Navbar = () => {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-3">
-          {isAuthenticated && (
-            <>
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-1.5 hover:bg-text hover:text-bg transition-all duration-200"
-                >
-                  {link.label}
-                </a>
-              ))}
-              {isAdmin && (
-                <a
-                  href="/admin"
-                  className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-1.5 hover:bg-text hover:text-bg transition-all duration-200"
-                >
-                  ADMIN
-                </a>
-              )}
-            </>
-          )}
-
-          {isAuthenticated ? (
-            <button
-              onClick={logout}
-              className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-1.5 hover:bg-text hover:text-bg transition-all duration-200 cursor-pointer"
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-1.5 hover:bg-text hover:text-bg transition-all duration-200"
             >
-              LOGOUT
-            </button>
-          ) : (
-            <button
-              onClick={login}
-              className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-1.5 hover:bg-text hover:text-bg transition-all duration-200 cursor-pointer"
-            >
-              LOGIN
-            </button>
-          )}
+              {link.label}
+            </a>
+          ))}
         </div>
 
         {/* Mobile menu button */}
@@ -84,32 +54,16 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="md:hidden border-t-2 border-border">
           <div className="px-6 py-4 flex flex-col gap-3">
-            {isAuthenticated ? (
-              <>
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-2 text-center hover:bg-text hover:text-bg transition-all duration-200"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-                {isAdmin && (
-                  <a href="/admin" className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-2 text-center hover:bg-text hover:text-bg transition-all duration-200">
-                    ADMIN
-                  </a>
-                )}
-                <button onClick={logout} className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-2 text-center hover:bg-text hover:text-bg transition-all duration-200 cursor-pointer">
-                  LOGOUT
-                </button>
-              </>
-            ) : (
-              <button onClick={login} className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-2 text-center hover:bg-text hover:text-bg transition-all duration-200 cursor-pointer">
-                LOGIN WITH GOOGLE
-              </button>
-            )}
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-xs font-bold tracking-wider uppercase border-2 border-border px-3 py-2 text-center hover:bg-text hover:text-bg transition-all duration-200"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       )}
