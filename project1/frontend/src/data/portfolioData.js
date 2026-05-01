@@ -13,7 +13,7 @@ const portfolioData = {
   links: {
     github: "https://github.com/faisal96kp",
     linkedin: "https://linkedin.com/in/faisal96kp",
-    codechef: "https://www.codechef.com/users/faisal96kp",
+    codechef: "https://www.codechef.com/users/faisalkhan_79",
   },
 
   skills: [
